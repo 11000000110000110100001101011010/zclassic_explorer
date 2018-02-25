@@ -2,10 +2,22 @@
 
 cd ~
 
+sudo apt-get update
 sudo apt-get -y install \
       build-essential pkg-config libc6-dev m4 g++-multilib \
-      autoconf libtool ncurses-dev unzip git python \
-      zlib1g-dev wget bsdmainutils automake npm
+      make autogen autoconf libtool ncurses-dev unzip git python \
+      zlib1g-dev wget bsdmainutils automake nodejs npm
+
+# Swap File must be fat 
+cd /
+sudo dd if=/dev/zero of=swapfile bs=1M count=3000
+sudo mkswap swapfile
+sudo chmod 0600 /swapfile
+sudo swapon swapfile
+#sudo nano etc/fstab
+echo "/swapfile none swap sw 0 0" | sudo tee -a etc/fstab > /dev/null
+#cat /proc/meminfo
+
 
 # clone zclassic daemon and build
 git clone https://github.com/z-classic/zclassic

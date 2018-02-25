@@ -13,14 +13,14 @@ nvm install v4
 sudo apt-get -y install libzmq3-dev
 
 # install bitcore (branched and patched from https://github.com/z-classic/bitcore-node-zclassic.git)
-npm install z-classic/bitcore-node-zclassic
+npm install str4d/bitcore-node-zcash
 
 # create bitcore node
-./node_modules/bitcore-node-zclassic/bin/bitcore-node create zclassic-explorer
+./node_modules/bitcore-node-zcash/bin/bitcore-node create zclassic-explorer
 cd zclassic-explorer
 
 # install patched insight api/ui (branched and patched from https://github.com/z-classic/insight-api-zclassic & https://github.com/z-classic/insight-ui-zclassic)
-../node_modules/bitcore-node-zclassic/bin/bitcore-node install z-classic/insight-api-zclassic z-classic/insight-ui-zclassic
+../node_modules/bitcore-node-zcash/bin/bitcore-node install z-classic/insight-api-zclassic z-classic/insight-ui-zclassic
 
 # create bitcore config file for bitcore and zcashd/zclassicd
 cat << EOF > bitcore-node.json
@@ -51,7 +51,7 @@ cat << EOF > bitcore-node.json
 
 EOF
 
-# create zcash.conf
+# create zclassic.conf
 # TODO randomize rpc password
 cat << EOF > data/zclassic.conf
 server=1
@@ -74,4 +74,4 @@ EOF
 
 echo "Start the block explorer, open in your browser http://server_ip:3001"
 echo "Run the following line as one line of commands to start the block explorer"
-echo "nvm use v4; cd zclassic-explorer; ./node_modules/bitcore-node-zclassic/bin/bitcore-node start"
+echo "nvm use v4; cd zclassic-explorer; ./node_modules/bitcore-node-zcash/bin/bitcore-node start"
