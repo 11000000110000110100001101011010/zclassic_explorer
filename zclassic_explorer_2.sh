@@ -3,9 +3,10 @@
 
 WHO=$(whoami)
 
-# install npm v4
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# install npm v4
 nvm install v4
 
 # install ZeroMQ libraries
@@ -22,7 +23,6 @@ cd zclassic-explorer
 ../node_modules/bitcore-node-zclassic/bin/bitcore-node install z-classic/insight-api-zclassic z-classic/insight-ui-zclassic
 
 # create bitcore config file for bitcore and zcashd/zclassicd
-# REPLACE "datadir" and "exec" with actual values of "/home/user"
 cat << EOF > bitcore-node.json
 {
   "network": "mainnet",
@@ -36,8 +36,8 @@ cat << EOF > bitcore-node.json
   "servicesConfig": {
     "bitcoind": {
       "spawn": {
-        "datadir": "/home/ubuntu/j62/.zclassic",
-        "exec": "/home/ubuntu/j62/zclassic/src/zcashd"
+        "datadir": "/home/$WHO/.zclassic",
+        "exec": "/home/$WHO/zclassic/src/zcashd"
       }
     },
     "insight-ui-zclassic": {
@@ -52,6 +52,7 @@ cat << EOF > bitcore-node.json
 EOF
 
 # create zcash.conf
+# TODO randomize rpc password
 cat << EOF > data/zclassic.conf
 server=1
 whitelist=127.0.0.1
